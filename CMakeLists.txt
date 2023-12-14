@@ -15,6 +15,12 @@ else()
     )
 endif()
 
+set(HEADER_FILES
+    "include/Allocator.h"
+)
+
+set(SOURCE_FILES
+    "src/Allocator.cpp"
+)
 #add_executable(${PROJECT_NAME} ${MY_SOURCES} ${MY_INCLUDES})
 #target_include_directories(${PROJECT_NAME} PRIVATE include)
-#target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL_LIBRARIES} flecs::flecs_static glm::glm)
