@@ -34,15 +34,16 @@ set(HEADER_FILES
 set(SOURCE_FILES
     "src/Allocator.cpp"
 )
-#add_executable(${PROJECT_NAME} ${MY_SOURCES} ${MY_INCLUDES})
-#target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 enable_testing()
 
 add_executable(
     AllocatorTest
     tests/AllocatorTest.cpp
+    ${SOURCE_FILES}
+    ${HEADER_FILES}
 )
+target_include_directories(AllocatorTest PRIVATE include)
 target_link_libraries(
     AllocatorTest
     GTest::gtest_main
