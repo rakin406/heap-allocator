@@ -34,7 +34,6 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
     "src/Allocator.cpp"
-    "src/LinkedList.cpp"
 )
 
 enable_testing()
