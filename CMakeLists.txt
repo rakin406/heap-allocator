@@ -29,10 +29,12 @@ FetchContent_MakeAvailable(googletest)
 
 set(HEADER_FILES
     "include/Allocator.h"
+    "include/LinkedList.h"
 )
 
 set(SOURCE_FILES
     "src/Allocator.cpp"
+    "src/LinkedList.cpp"
 )
 
 enable_testing()
