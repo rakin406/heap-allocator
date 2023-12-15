@@ -35,4 +35,12 @@ TEST(LinkedListTest, CountElement)
     list.append(42);
     EXPECT_EQ(3, list.count(42));
 }
+
+TEST(LinkedListTest, EmptyList)
+{
+    LinkedList<int> list{};
+    EXPECT_TRUE(list.isEmpty());
+    list.append(42);
+    EXPECT_FALSE(list.isEmpty());
+}
 } // namespace
