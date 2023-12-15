@@ -25,6 +25,22 @@ template <class T> class LinkedList
      */
     LinkedList() : m_head{nullptr}, m_tail{nullptr}, m_size{0} {}
 
+    // ------- Element access -------
+
+    /**
+     * @brief Access the first element.
+     * @return Data of type T.
+     */
+    [[nodiscard]] T first() const { return this->m_head->data; }
+
+    /**
+     * @brief Access the last element.
+     * @return Data of type T.
+     */
+    [[nodiscard]] T last() const { return this->m_tail->data; }
+
+    // ------- Capacity -------
+
     /**
      * @brief Add data to the end of the list.
      * @param data Data of type T.
@@ -76,7 +92,7 @@ template <class T> class LinkedList
      * @param data Data of type T.
      * @return The number of data.
      */
-    int count(T data) const
+    [[nodiscard]] int count(T data) const
     {
         std::unique_ptr<Node> temp{this->m_head};
         int count{0};
@@ -89,18 +105,6 @@ template <class T> class LinkedList
 
         return count;
     }
-
-    /**
-     * @brief Access the first element.
-     * @return Data of type T.
-     */
-    T first() const { return this->m_head->data; }
-
-    /**
-     * @brief Access the last element.
-     * @return Data of type T.
-     */
-    T last() const { return this->m_tail->data; }
 
   private:
     std::unique_ptr<Node> m_head{};
