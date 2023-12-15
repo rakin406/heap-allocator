@@ -77,4 +77,13 @@ TEST(LinkedListTest, ClearList)
     list.clear();
     EXPECT_TRUE(list.isEmpty());
 }
+
+TEST(LinkedListTest, RemoveFirstElement)
+{
+    LinkedList<int> list{};
+    list.append(4);
+    list.append(2);
+    list.popFirst();
+    EXPECT_EQ(2, list.first());
+}
 } // namespace

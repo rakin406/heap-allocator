@@ -141,7 +141,8 @@ template <class T> class LinkedList
     {
         m_head = m_head->next;
         --m_size;
-        m_tail = nullptr;
+        if (isEmpty())
+            m_tail = nullptr;
     }
 
     /**
