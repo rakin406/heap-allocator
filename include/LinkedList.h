@@ -5,8 +5,6 @@
 #ifndef HEAP_ALLOCATOR_LINKEDLIST_H
 #define HEAP_ALLOCATOR_LINKEDLIST_H
 
-#include <memory>
-
 /**
  * @brief A custom implementation of linked list.
  * @tparam T Type
@@ -17,7 +15,7 @@ template <class T> class LinkedList
     struct Node
     {
         T data{};
-        std::unique_ptr<Node> next{};
+        Node *next{};
     };
 
     /**
@@ -33,7 +31,7 @@ template <class T> class LinkedList
      */
     [[nodiscard]] T first() const
     {
-        if (this->isEmpty())
+        if (isEmpty())
             return nullptr;
         return m_head->data;
     }
@@ -44,7 +42,7 @@ template <class T> class LinkedList
      */
     [[nodiscard]] T last() const
     {
-        if (this->isEmpty())
+        if (isEmpty())
             return nullptr;
         return m_tail->data;
     }
@@ -58,7 +56,7 @@ template <class T> class LinkedList
      */
     [[nodiscard]] int count(T data) const
     {
-        std::unique_ptr<Node> temp{m_head};
+        Node *temp{m_head};
         int count{0};
         while (temp->next != nullptr)
         {
@@ -90,11 +88,11 @@ template <class T> class LinkedList
      */
     void append(T data)
     {
-        std::unique_ptr<Node> newNode{};
+        Node *newNode{};
         newNode->data = data;
         newNode->next = nullptr;
 
-        if (this->isEmpty())
+        if (isEmpty())
         {
             m_head = newNode;
         }
@@ -113,9 +111,10 @@ template <class T> class LinkedList
      */
     void prepend(T data)
     {
-        m_head = std::make_unique<Node>(data, m_head);
-        if (this->isEmpty())
-            m_tail = m_head;
+        Node *newNode{};
+        newNode->data = data;
+        newNode->next = m_head;
+        m_head = newNode;
         ++m_size;
     }
 
@@ -124,7 +123,7 @@ template <class T> class LinkedList
      */
     void clear()
     {
-        std::unique_ptr<Node> temp{m_head};
+        Node *temp{m_head};
         while (temp->next != nullptr)
         {
             m_head = m_head->next;
@@ -140,7 +139,7 @@ template <class T> class LinkedList
     {
         m_head = m_head->next;
         --m_size;
-        if (this->isEmpty())
+        if (isEmpty())
             m_tail = nullptr;
     }
 
@@ -150,20 +149,20 @@ template <class T> class LinkedList
     void popLast()
     {
         // Get second last node
-        std::unique_ptr<Node> temp{m_head};
+        Node *temp{m_head};
         while (temp->next->next != nullptr)
             temp = temp->next;
         temp->next = nullptr;
         m_tail = temp;
 
         --m_size;
-        if (this->isEmpty())
+        if (isEmpty())
             m_tail = nullptr;
     }
 
   private:
-    std::unique_ptr<Node> m_head{};
-    std::unique_ptr<Node> m_tail{};
+    Node *m_head{};
+    Node *m_tail{};
     int m_size{};
 };
 
