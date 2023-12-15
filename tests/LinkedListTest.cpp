@@ -52,4 +52,11 @@ TEST(LinkedListTest, ListSize)
     list.append(7);
     EXPECT_EQ(3, list.size());
 }
+
+TEST(LinkedListTest, AppendElement)
+{
+    LinkedList<int> list{};
+    list.append(42);
+    EXPECT_EQ(42, list.first());
+}
 } // namespace
