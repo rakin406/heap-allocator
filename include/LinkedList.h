@@ -94,20 +94,17 @@ template <class T> class LinkedList
         newNode->data = data;
         newNode->next = nullptr;
 
-        if (this->m_head == nullptr)
+        if (this->isEmpty())
         {
             this->m_head = newNode;
         }
         else
         {
-            // TODO: Choose a better name for this.
-            std::unique_ptr<Node> temp{this->m_head};
-            while (temp->next != nullptr)
-            {
-                temp = temp->next;
-            }
-            temp->next = newNode;
+            this->m_tail->next = newNode;
         }
+
+        this->m_tail = newNode;
+        ++this->m_size;
     }
 
     /**
