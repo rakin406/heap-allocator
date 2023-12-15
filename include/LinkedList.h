@@ -2,8 +2,8 @@
 // Created by rakin on 12/14/2023.
 //
 
-#ifndef HEAP_ALLOCATOR_LINKEDLIST_H
-#define HEAP_ALLOCATOR_LINKEDLIST_H
+#ifndef HEAP_ALLOCATOR_LINKED_LIST_H
+#define HEAP_ALLOCATOR_LINKED_LIST_H
 
 /**
  * @brief A custom implementation of linked list.
@@ -29,23 +29,13 @@ template <class T> class LinkedList
      * @brief Access the first element.
      * @return Data of type T.
      */
-    [[nodiscard]] T first() const
-    {
-        if (isEmpty())
-            return nullptr;
-        return m_head->data;
-    }
+    [[nodiscard]] T first() const { return m_head->data; }
 
     /**
      * @brief Access the last element.
      * @return Data of type T.
      */
-    [[nodiscard]] T last() const
-    {
-        if (isEmpty())
-            return nullptr;
-        return m_tail->data;
-    }
+    [[nodiscard]] T last() const { return m_tail->data; }
 
     // ------- Capacity -------
 
@@ -88,7 +78,7 @@ template <class T> class LinkedList
      */
     void append(T data)
     {
-        Node *newNode{};
+        auto *newNode{new Node{}};
         newNode->data = data;
         newNode->next = nullptr;
 
@@ -139,8 +129,7 @@ template <class T> class LinkedList
     {
         m_head = m_head->next;
         --m_size;
-        if (isEmpty())
-            m_tail = nullptr;
+        m_tail = nullptr;
     }
 
     /**
@@ -153,11 +142,10 @@ template <class T> class LinkedList
         while (temp->next->next != nullptr)
             temp = temp->next;
         temp->next = nullptr;
-        m_tail = temp;
 
+        m_tail = temp;
         --m_size;
-        if (isEmpty())
-            m_tail = nullptr;
+        m_tail = nullptr;
     }
 
   private:
@@ -166,4 +154,4 @@ template <class T> class LinkedList
     int m_size{};
 };
 
-#endif // HEAP_ALLOCATOR_LINKEDLIST_H
+#endif // HEAP_ALLOCATOR_LINKED_LIST_H

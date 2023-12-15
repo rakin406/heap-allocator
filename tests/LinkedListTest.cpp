@@ -9,13 +9,10 @@
 
 namespace
 {
-// THE ANSWER TO LIFE, THE UNIVERSE, AND EVERYTHING!
-constexpr int ANSWER{42};
-
 TEST(LinkedListTest, GetFirstElement)
 {
     LinkedList<int> list{};
-    list.append(ANSWER);
-    EXPECT_EQ(ANSWER, list.first());
+    list.append(42);
+    EXPECT_EQ(42, list.first());
 }
 } // namespace
