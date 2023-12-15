@@ -86,4 +86,13 @@ TEST(LinkedListTest, RemoveFirstElement)
     list.popFirst();
     EXPECT_EQ(2, list.first());
 }
+
+TEST(LinkedListTest, RemoveLastElement)
+{
+    LinkedList<int> list{};
+    list.append(4);
+    list.append(2);
+    list.popLast();
+    EXPECT_EQ(4, list.last());
+}
 } // namespace

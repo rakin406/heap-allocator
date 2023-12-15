@@ -156,9 +156,16 @@ template <class T> class LinkedList
             temp = temp->next;
         temp->next = nullptr;
 
-        m_tail = temp;
+        if (isEmpty())
+        {
+            m_tail = nullptr;
+        }
+        else
+        {
+            m_tail = temp;
+        }
+
         --m_size;
-        m_tail = nullptr;
     }
 
   private:
