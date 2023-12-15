@@ -85,7 +85,7 @@ template <class T> class LinkedList
     // ------- Modifiers -------
 
     /**
-     * @brief Add data to the end of the list.
+     * @brief Add an element to the end of the list.
      * @param data Data of type T.
      */
     void append(T data)
@@ -108,6 +108,18 @@ template <class T> class LinkedList
     }
 
     /**
+     * @brief Add an element to the beginning of the list.
+     * @param data Data of type T.
+     */
+    void prepend(T data)
+    {
+        this->m_head = std::make_unique<Node>(data, this->m_head);
+        if (this->isEmpty())
+            this->m_tail = this->m_head;
+        ++this->m_size;
+    }
+
+    /**
      * @brief Remove all elements from the list.
      */
     void clear()
@@ -122,9 +134,14 @@ template <class T> class LinkedList
     }
 
     /**
+     * @brief Remove the first element of the list.
+     */
+    void popFirst() {}
+
+    /**
      * @brief Remove the last element of the list.
      */
-    void pop() {}
+    void popLast() {}
 
   private:
     std::unique_ptr<Node> m_head{};
