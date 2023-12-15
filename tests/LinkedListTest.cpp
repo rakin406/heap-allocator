@@ -59,4 +59,13 @@ TEST(LinkedListTest, AppendElement)
     list.append(42);
     EXPECT_EQ(42, list.first());
 }
+
+TEST(LinkedListTest, PrependElement)
+{
+    LinkedList<int> list{};
+    list.prepend(1);
+    EXPECT_EQ(1, list.first());
+    list.prepend(0);
+    EXPECT_EQ(0, list.first());
+}
 } // namespace

@@ -103,9 +103,19 @@ template <class T> class LinkedList
      */
     void prepend(T data)
     {
-        Node *newNode{};
+        auto *newNode{new Node{}};
         newNode->data = data;
-        newNode->next = m_head;
+
+        if (isEmpty())
+        {
+            newNode->next = nullptr;
+            m_tail = newNode;
+        }
+        else
+        {
+            newNode->next = m_head;
+        }
+
         m_head = newNode;
         ++m_size;
     }
