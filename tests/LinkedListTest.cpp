@@ -9,7 +9,7 @@
 
 namespace
 {
-TEST(LinkedListTest, GetFirstElement)
+TEST(LinkedListTest, FirstElement)
 {
     LinkedList<int> list{};
     list.append(42);
@@ -18,7 +18,7 @@ TEST(LinkedListTest, GetFirstElement)
     EXPECT_EQ(42, list.first());
 }
 
-TEST(LinkedListTest, GetLastElement)
+TEST(LinkedListTest, LastElement)
 {
     LinkedList<int> list{};
     list.append(4);
@@ -32,8 +32,8 @@ TEST(LinkedListTest, CountElement)
     LinkedList<int> list{};
     list.append(42);
     list.append(42);
-    list.append(42);
-    EXPECT_EQ(3, list.count(42));
+    list.append(0);
+    EXPECT_EQ(2, list.count(42));
 }
 
 TEST(LinkedListTest, EmptyList)
@@ -42,5 +42,14 @@ TEST(LinkedListTest, EmptyList)
     EXPECT_TRUE(list.isEmpty());
     list.append(42);
     EXPECT_FALSE(list.isEmpty());
+}
+
+TEST(LinkedListTest, ListSize)
+{
+    LinkedList<int> list{};
+    list.append(0);
+    list.append(0);
+    list.append(7);
+    EXPECT_EQ(3, list.size());
 }
 } // namespace
