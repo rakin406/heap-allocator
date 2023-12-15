@@ -26,4 +26,13 @@ TEST(LinkedListTest, GetLastElement)
     list.append(42);
     EXPECT_EQ(42, list.last());
 }
+
+TEST(LinkedListTest, CountElement)
+{
+    LinkedList<int> list{};
+    list.append(42);
+    list.append(42);
+    list.append(42);
+    EXPECT_EQ(3, list.count(42));
+}
 } // namespace

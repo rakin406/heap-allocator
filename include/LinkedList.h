@@ -5,6 +5,8 @@
 #ifndef HEAP_ALLOCATOR_LINKED_LIST_H
 #define HEAP_ALLOCATOR_LINKED_LIST_H
 
+#include <ranges>
+
 /**
  * @brief A custom implementation of linked list.
  * @tparam T Type
@@ -40,15 +42,15 @@ template <class T> class LinkedList
     // ------- Capacity -------
 
     /**
-     * @brief Get the number of times the data appears in the list.
+     * @brief Get the number of times the element appears in the list.
      * @param data Data of type T.
-     * @return The number of data.
+     * @return The number of times.
      */
     [[nodiscard]] int count(T data) const
     {
         Node *temp{m_head};
         int count{0};
-        while (temp->next != nullptr)
+        for ([[maybe_unused]] int i : std::views::iota(0, m_size))
         {
             if (temp->data == data)
                 ++count;
