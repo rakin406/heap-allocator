@@ -42,6 +42,18 @@ template <class T> class LinkedList
     // ------- Capacity -------
 
     /**
+     * @brief Check whether the list is empty.
+     * @return True if the list is empty, and false otherwise.
+     */
+    [[nodiscard]] bool isEmpty() const { return this->m_size == 0; }
+
+    /**
+     * @brief Get the number of elements in the list.
+     * @return The number of elements.
+     */
+    [[nodiscard]] int size() const { return this->m_size; }
+
+    /**
      * @brief Add data to the end of the list.
      * @param data Data of type T.
      * @return Last node from the list.
