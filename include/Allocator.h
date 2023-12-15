@@ -5,29 +5,42 @@
 #ifndef HEAP_ALLOCATOR_ALLOCATOR_H
 #define HEAP_ALLOCATOR_ALLOCATOR_H
 
-#include <string_view>
-#include <memory>
+#include "LinkedList.h"
 
- /**
-  * @brief Class for heap allocation.
-  */
-class Allocator {
-public:
+// NOTE: This is an unfinished project.
+
+/**
+ * @brief Class for heap allocation.
+ * @tparam T Type
+ */
+template <class T>
+class Allocator
+{
+  public:
     /**
      * @brief Constructor.
-     * @param size Fixed memory block size.
-     * @param objects Amount of blocks. 0 means get new blocks from the
-     * heap as necessary. Default is 0.
-     * @param name Allocator name.
+     * @param size Size of the fixed blocks.
+     * @param objects Maximum number of objects.
      */
-    Allocator(std::size_t size, uint32_t objects = 0,
-              std::string_view *name = nullptr);
+    Allocator(std::size_t size, int objects = 0) {}
 
-    ~Allocator();
+    /**
+     * @brief Destructor.
+     */
+    ~Allocator() {}
 
-private:
-    std::size_t m_size{};
-    std::unique_ptr<int[]> m_ptr{};
+    void* allocate()
+    {
+        T* ptr{};
+        m_freeList.append(ptr);
+    }
+
+    void* deallocate(void* memory) { m_freeList.append(memory); }
+
+  private:
+    const std::size_t m_blockSize{};
+    const std::size_t m_objectSize{};
+    LinkedList<T> m_freeList{};
 };
 
-#endif //HEAP_ALLOCATOR_ALLOCATOR_H
+#endif  // HEAP_ALLOCATOR_ALLOCATOR_H

@@ -32,19 +32,14 @@ set(HEADER_FILES
     "include/LinkedList.h"
 )
 
-set(SOURCE_FILES
-    "src/Allocator.cpp"
-)
-
 enable_testing()
 
 add_executable(
     AllTests
     tests/AllTests.cpp
+    tests/AllocatorTest.cpp
     tests/LinkedListTest.cpp
-    include/LinkedList.h
-    # ${SOURCE_FILES}
-    # ${HEADER_FILES}
+    ${HEADER_FILES}
 )
 target_include_directories(AllTests PRIVATE include)
 target_link_libraries(
