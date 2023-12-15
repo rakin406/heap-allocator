@@ -39,16 +39,17 @@ set(SOURCE_FILES
 enable_testing()
 
 add_executable(
-    AllocatorTest
-    tests/AllocatorTest.cpp
-    ${SOURCE_FILES}
-    ${HEADER_FILES}
+    AllTests
+    tests/AllTests.cpp
+    include/LinkedList.h
+    # ${SOURCE_FILES}
+    # ${HEADER_FILES}
 )
-target_include_directories(AllocatorTest PRIVATE include)
+target_include_directories(AllTests PRIVATE include)
 target_link_libraries(
-    AllocatorTest
+    AllTests
     GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(AllocatorTest)
+gtest_discover_tests(AllTests)
