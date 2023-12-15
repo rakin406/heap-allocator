@@ -68,4 +68,13 @@ TEST(LinkedListTest, PrependElement)
     list.prepend(0);
     EXPECT_EQ(0, list.first());
 }
+
+TEST(LinkedListTest, ClearList)
+{
+    LinkedList<int> list{};
+    list.append(4);
+    list.append(2);
+    list.clear();
+    EXPECT_TRUE(list.isEmpty());
+}
 } // namespace

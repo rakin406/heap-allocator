@@ -126,7 +126,7 @@ template <class T> class LinkedList
     void clear()
     {
         Node *temp{m_head};
-        while (temp->next != nullptr)
+        for ([[maybe_unused]] int i : std::views::iota(0, m_size))
         {
             m_head = m_head->next;
             temp = temp->next;
