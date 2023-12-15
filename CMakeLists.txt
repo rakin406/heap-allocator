@@ -41,6 +41,7 @@ enable_testing()
 add_executable(
     AllTests
     tests/AllTests.cpp
+    tests/LinkedListTest.cpp
     include/LinkedList.h
     # ${SOURCE_FILES}
     # ${HEADER_FILES}
