@@ -127,7 +127,7 @@ template <class T> class LinkedList
         std::unique_ptr<Node> temp{this->m_head};
         while (temp->next != nullptr)
         {
-            this->m_head = this->m_head->next; // Make next node the head
+            this->m_head = this->m_head->next;
             temp = temp->next;
         }
         this->m_size = 0;
@@ -136,7 +136,12 @@ template <class T> class LinkedList
     /**
      * @brief Remove the first element of the list.
      */
-    void popFirst() {}
+    void popFirst() {
+        this->m_head = this->m_head->next;
+        --this->m_size;
+        if (this->isEmpty())
+            this->m_tail = nullptr;
+    }
 
     /**
      * @brief Remove the last element of the list.
