@@ -11,13 +11,14 @@
  * @brief A custom implementation of linked list.
  * @tparam T Type
  */
-template <class T> class LinkedList
+template <class T>
+class LinkedList
 {
   public:
     struct Node
     {
         T data{};
-        Node *next{};
+        Node* next{};
     };
 
     /**
@@ -48,7 +49,7 @@ template <class T> class LinkedList
      */
     [[nodiscard]] int count(T data) const
     {
-        Node *temp{m_head};
+        Node* temp{m_head};
         int count{0};
         for ([[maybe_unused]] int i : std::views::iota(0, m_size))
         {
@@ -80,7 +81,7 @@ template <class T> class LinkedList
      */
     void append(T data)
     {
-        auto *newNode{new Node{}};
+        auto* newNode{new Node{}};
         newNode->data = data;
         newNode->next = nullptr;
 
@@ -103,7 +104,7 @@ template <class T> class LinkedList
      */
     void prepend(T data)
     {
-        auto *newNode{new Node{}};
+        auto* newNode{new Node{}};
         newNode->data = data;
 
         if (isEmpty())
@@ -125,7 +126,7 @@ template <class T> class LinkedList
      */
     void clear()
     {
-        Node *temp{m_head};
+        Node* temp{m_head};
         for ([[maybe_unused]] int i : std::views::iota(0, m_size))
         {
             m_head = m_head->next;
@@ -151,7 +152,7 @@ template <class T> class LinkedList
     void popLast()
     {
         // Get second last node
-        Node *temp{m_head};
+        Node* temp{m_head};
         while (temp->next->next != nullptr)
             temp = temp->next;
         temp->next = nullptr;
@@ -169,9 +170,9 @@ template <class T> class LinkedList
     }
 
   private:
-    Node *m_head{};
-    Node *m_tail{};
+    Node* m_head{};
+    Node* m_tail{};
     int m_size{};
 };
 
-#endif // HEAP_ALLOCATOR_LINKED_LIST_H
+#endif  // HEAP_ALLOCATOR_LINKED_LIST_H

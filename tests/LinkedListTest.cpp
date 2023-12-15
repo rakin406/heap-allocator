@@ -95,4 +95,4 @@ TEST(LinkedListTest, RemoveLastElement)
     list.popLast();
     EXPECT_EQ(4, list.last());
 }
-} // namespace
+}  // namespace

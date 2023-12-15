@@ -1,3 +1,4 @@
+BasedOnStyle: Chromium
 UseTab: Never
 IndentWidth: 4
 BreakBeforeBraces: Allman
