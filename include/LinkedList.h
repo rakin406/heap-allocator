@@ -118,6 +118,7 @@ template <class T> class LinkedList
             this->m_head = this->m_head->next; // Make next node the head
             temp = temp->next;
         }
+        this->m_size = 0;
     }
 
     /**
