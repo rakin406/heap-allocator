@@ -35,7 +35,7 @@ template <class T> class LinkedList
     {
         if (this->isEmpty())
             return nullptr;
-        return this->m_head->data;
+        return m_head->data;
     }
 
     /**
@@ -46,7 +46,7 @@ template <class T> class LinkedList
     {
         if (this->isEmpty())
             return nullptr;
-        return this->m_tail->data;
+        return m_tail->data;
     }
 
     // ------- Capacity -------
@@ -58,7 +58,7 @@ template <class T> class LinkedList
      */
     [[nodiscard]] int count(T data) const
     {
-        std::unique_ptr<Node> temp{this->m_head};
+        std::unique_ptr<Node> temp{m_head};
         int count{0};
         while (temp->next != nullptr)
         {
@@ -74,13 +74,13 @@ template <class T> class LinkedList
      * @brief Check whether the list is empty.
      * @return True if the list is empty, and false otherwise.
      */
-    [[nodiscard]] bool isEmpty() const { return this->m_size == 0; }
+    [[nodiscard]] bool isEmpty() const { return m_size == 0; }
 
     /**
      * @brief Get the number of elements in the list.
      * @return The number of elements.
      */
-    [[nodiscard]] int size() const { return this->m_size; }
+    [[nodiscard]] int size() const { return m_size; }
 
     // ------- Modifiers -------
 
@@ -96,15 +96,15 @@ template <class T> class LinkedList
 
         if (this->isEmpty())
         {
-            this->m_head = newNode;
+            m_head = newNode;
         }
         else
         {
-            this->m_tail->next = newNode;
+            m_tail->next = newNode;
         }
 
-        this->m_tail = newNode;
-        ++this->m_size;
+        m_tail = newNode;
+        ++m_size;
     }
 
     /**
@@ -113,10 +113,10 @@ template <class T> class LinkedList
      */
     void prepend(T data)
     {
-        this->m_head = std::make_unique<Node>(data, this->m_head);
+        m_head = std::make_unique<Node>(data, m_head);
         if (this->isEmpty())
-            this->m_tail = this->m_head;
-        ++this->m_size;
+            m_tail = m_head;
+        ++m_size;
     }
 
     /**
@@ -124,29 +124,42 @@ template <class T> class LinkedList
      */
     void clear()
     {
-        std::unique_ptr<Node> temp{this->m_head};
+        std::unique_ptr<Node> temp{m_head};
         while (temp->next != nullptr)
         {
-            this->m_head = this->m_head->next;
+            m_head = m_head->next;
             temp = temp->next;
         }
-        this->m_size = 0;
+        m_size = 0;
     }
 
     /**
      * @brief Remove the first element of the list.
      */
-    void popFirst() {
-        this->m_head = this->m_head->next;
-        --this->m_size;
+    void popFirst()
+    {
+        m_head = m_head->next;
+        --m_size;
         if (this->isEmpty())
-            this->m_tail = nullptr;
+            m_tail = nullptr;
     }
 
     /**
      * @brief Remove the last element of the list.
      */
-    void popLast() {}
+    void popLast()
+    {
+        // Get second last node
+        std::unique_ptr<Node> temp{m_head};
+        while (temp->next->next != nullptr)
+            temp = temp->next;
+        temp->next = nullptr;
+        m_tail = temp;
+
+        --m_size;
+        if (this->isEmpty())
+            m_tail = nullptr;
+    }
 
   private:
     std::unique_ptr<Node> m_head{};
