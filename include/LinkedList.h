@@ -66,9 +66,28 @@ template <class T> class LinkedList
         std::unique_ptr<Node> temp{this->m_head};
         while (temp->next != nullptr)
         {
-            this->m_head = this->m_head->next;
+            this->m_head = this->m_head->next;  // Make next node the head
             temp = temp->next;
         }
+    }
+
+    /**
+     * @brief Get the number of times the data appears in the list.
+     * @param data Data of type T.
+     * @return The number of data.
+     */
+    int count(T data)
+    {
+        std::unique_ptr<Node> temp{this->m_head};
+        int count{0};
+        while (temp->next != nullptr)
+        {
+            if (temp->data == data)
+                ++count;
+            temp = temp->next;
+        }
+
+        return count;
     }
 
   private:
