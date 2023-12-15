@@ -31,73 +31,25 @@ template <class T> class LinkedList
      * @brief Access the first element.
      * @return Data of type T.
      */
-    [[nodiscard]] T first() const { return this->m_head->data; }
+    [[nodiscard]] T first() const
+    {
+        if (this->isEmpty())
+            return nullptr;
+        return this->m_head->data;
+    }
 
     /**
      * @brief Access the last element.
      * @return Data of type T.
      */
-    [[nodiscard]] T last() const { return this->m_tail->data; }
+    [[nodiscard]] T last() const
+    {
+        if (this->isEmpty())
+            return nullptr;
+        return this->m_tail->data;
+    }
 
     // ------- Capacity -------
-
-    /**
-     * @brief Check whether the list is empty.
-     * @return True if the list is empty, and false otherwise.
-     */
-    [[nodiscard]] bool isEmpty() const { return this->m_size == 0; }
-
-    /**
-     * @brief Get the number of elements in the list.
-     * @return The number of elements.
-     */
-    [[nodiscard]] int size() const { return this->m_size; }
-
-    /**
-     * @brief Add data to the end of the list.
-     * @param data Data of type T.
-     * @return Last node from the list.
-     */
-    const Node *append(T data)
-    {
-        std::unique_ptr<Node> newNode{};
-        newNode->data = data;
-        newNode->next = nullptr;
-
-        std::unique_ptr<Node> lastNode{};
-
-        if (this->m_head == nullptr)
-        {
-            this->m_head = newNode;
-            lastNode = this->m_head;
-        }
-        else
-        {
-            // TODO: Choose a better name for this.
-            std::unique_ptr<Node> temp{this->m_head};
-            while (temp->next != nullptr)
-            {
-                temp = temp->next;
-            }
-            temp->next = newNode;
-            lastNode = temp->next;
-        }
-
-        return lastNode.get();
-    }
-
-    /**
-     * @brief Delete all data from the list.
-     */
-    void clear()
-    {
-        std::unique_ptr<Node> temp{this->m_head};
-        while (temp->next != nullptr)
-        {
-            this->m_head = this->m_head->next; // Make next node the head
-            temp = temp->next;
-        }
-    }
 
     /**
      * @brief Get the number of times the data appears in the list.
@@ -117,6 +69,64 @@ template <class T> class LinkedList
 
         return count;
     }
+
+    /**
+     * @brief Check whether the list is empty.
+     * @return True if the list is empty, and false otherwise.
+     */
+    [[nodiscard]] bool isEmpty() const { return this->m_size == 0; }
+
+    /**
+     * @brief Get the number of elements in the list.
+     * @return The number of elements.
+     */
+    [[nodiscard]] int size() const { return this->m_size; }
+
+    // ------- Modifiers -------
+
+    /**
+     * @brief Add data to the end of the list.
+     * @param data Data of type T.
+     */
+    void append(T data)
+    {
+        std::unique_ptr<Node> newNode{};
+        newNode->data = data;
+        newNode->next = nullptr;
+
+        if (this->m_head == nullptr)
+        {
+            this->m_head = newNode;
+        }
+        else
+        {
+            // TODO: Choose a better name for this.
+            std::unique_ptr<Node> temp{this->m_head};
+            while (temp->next != nullptr)
+            {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+    }
+
+    /**
+     * @brief Remove all elements from the list.
+     */
+    void clear()
+    {
+        std::unique_ptr<Node> temp{this->m_head};
+        while (temp->next != nullptr)
+        {
+            this->m_head = this->m_head->next; // Make next node the head
+            temp = temp->next;
+        }
+    }
+
+    /**
+     * @brief Remove the last element of the list.
+     */
+    void pop() {}
 
   private:
     std::unique_ptr<Node> m_head{};
