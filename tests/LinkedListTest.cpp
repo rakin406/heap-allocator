@@ -13,6 +13,17 @@ TEST(LinkedListTest, GetFirstElement)
 {
     LinkedList<int> list{};
     list.append(42);
+    list.append(4);
+    list.append(2);
     EXPECT_EQ(42, list.first());
+}
+
+TEST(LinkedListTest, GetLastElement)
+{
+    LinkedList<int> list{};
+    list.append(4);
+    list.append(2);
+    list.append(42);
+    EXPECT_EQ(42, list.last());
 }
 } // namespace
