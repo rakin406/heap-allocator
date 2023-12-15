@@ -23,7 +23,7 @@ template <class T> class LinkedList
     /**
      * @brief Constructor
      */
-    LinkedList() : m_head{nullptr}, m_tail{nullptr} {}
+    LinkedList() : m_head{nullptr}, m_tail{nullptr}, m_size{0} {}
 
     /**
      * @brief Add data to the end of the list.
@@ -36,7 +36,7 @@ template <class T> class LinkedList
         newNode->data = data;
         newNode->next = nullptr;
 
-        std::unique_ptr<Node> lastNode{nullptr};
+        std::unique_ptr<Node> lastNode{};
 
         if (this->m_head == nullptr)
         {
@@ -66,7 +66,7 @@ template <class T> class LinkedList
         std::unique_ptr<Node> temp{this->m_head};
         while (temp->next != nullptr)
         {
-            this->m_head = this->m_head->next;  // Make next node the head
+            this->m_head = this->m_head->next; // Make next node the head
             temp = temp->next;
         }
     }
@@ -76,7 +76,7 @@ template <class T> class LinkedList
      * @param data Data of type T.
      * @return The number of data.
      */
-    int count(T data)
+    int count(T data) const
     {
         std::unique_ptr<Node> temp{this->m_head};
         int count{0};
@@ -90,9 +90,22 @@ template <class T> class LinkedList
         return count;
     }
 
+    /**
+     * @brief Access the first element.
+     * @return Data of type T.
+     */
+    T first() const { return this->m_head->data; }
+
+    /**
+     * @brief Access the last element.
+     * @return Data of type T.
+     */
+    T last() const { return this->m_tail->data; }
+
   private:
     std::unique_ptr<Node> m_head{};
     std::unique_ptr<Node> m_tail{};
+    int m_size{};
 };
 
 #endif // HEAP_ALLOCATOR_LINKEDLIST_H
